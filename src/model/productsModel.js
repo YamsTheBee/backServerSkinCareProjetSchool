@@ -8,5 +8,16 @@ const findAll = async () => {
 		console.error(err);
 	}
 };
+const findOne = async (id) => {
+	try {
+		const [product] = await db.query("select * from products where id = ?", [
+			id,
+		]);
 
-module.exports = { findAll };
+		return product;
+	} catch (err) {
+		console.error(err);
+	}
+};
+
+module.exports = { findAll, findOne };
