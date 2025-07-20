@@ -1,16 +1,11 @@
-require("dotenv").config();
-const cors = require("cors"); // Import du middleware CORS
-const app = require("./src/app");
+// index.js
+import dotenv from "dotenv";
+import app from "./src/app.js"; // ✅ avec le bon chemin
 
-const port = process.env.PORT;
+dotenv.config();
 
-// Active CORS pour toutes les origines
-app.use(cors());
+const port = process.env.PORT || 4242;
 
-app.listen(port, (err) => {
-	if (err) {
-		console.error(err);
-	} else {
-		console.log(`server address: http://localhost:${port}`);
-	}
+app.listen(port, () => {
+	console.log(`✅ Server running on http://localhost:${port}`);
 });
