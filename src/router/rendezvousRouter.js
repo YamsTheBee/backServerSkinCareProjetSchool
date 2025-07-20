@@ -1,23 +1,40 @@
-const express = require("express");
+// routes/rdvRouter.js
+// Définition des routes liées aux rendez-vous utilisateurs
+
+import express from "express";
+import rendezVousController from "../controller/rendezVousController.js";
+
 const router = express.Router();
-const rendezvousController = require("../controller/rendezvousController");
-const {
-	createRendezvous,
-	getRendezvousByUserId,
-	updateRendezvous,
-	deleteRendezvous,
-} = require("../controller/rendezvousController");
 
-// POST - Créer un rendez-vous
-router.post("/", createRendezvous);
+/**
+ * @route POST /
+ * @desc Créer un rendez-vous
+ * @access Public
+ */
+router.post("/", rendezVousController.createRendezvous);
 
-// GET - Récupérer les rendez-vous d'un utilisateur
-router.get("/:userId", rendezvousController.getRendezvousByUserId);
+/**
+ * @route GET /:userId
+ * @desc Récupérer les rendez-vous d'un utilisateur
+ * @access Public
+ */
 
-// PUT - Modifier un rendez-vous
-router.put("/:id", updateRendezvous);
+router.get("/:userId", rendezVousController.getRendezvousByUserId);
 
-// DELETE - Supprimer un rendez-vous
-router.delete("/:id", deleteRendezvous);
+/**
+ * @route PUT /:id
+ * @desc Modifier un rendez-vous
+ * @access Public
+ */
 
-module.exports = router;
+router.put("/:id", rendezVousController.updateRendezvous);
+
+/**
+ * @route DELETE /:id
+ * @desc Supprimer un rendez-vous
+ * @access Public
+ */
+
+router.delete("/:id", rendezVousController.deleteRendezvous);
+
+export default router;
